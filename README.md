@@ -3,9 +3,9 @@ i18n-web-translate
 This is a tool for translating i18n files in a JSON format automatically using
 Google Translate.
 
-To run this run `python i18n-translate.py path/to/file lang-to-translate-to`
-The language to translate to is the two letter code for the language
-(Spanish is es).
+To run this run `python i18n-translate.py path/to/file target-language input-language`
+The target language to translate to is the language tag (Spanish is es).
+The input language is the language that the input file is in.
 
 # Pre-requisites
 ## Python 2
