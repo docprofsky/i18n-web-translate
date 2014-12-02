@@ -22,8 +22,6 @@ args = parser.parse_args()
 
 print args
 
-# This works!
-
 
 def translate_recursive(data_to_translate, translate_lang, input_lang, goslate_instance):
     translated_data = data_to_translate
