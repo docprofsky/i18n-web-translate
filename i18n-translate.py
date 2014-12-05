@@ -1,6 +1,7 @@
 import json
 import goslate
 import argparse
+from collections import OrderedDict
 
 original_data = {}
 gs = goslate.Goslate()
@@ -36,7 +37,7 @@ def translate_recursive(data_to_translate, translate_lang, input_lang, goslate_i
 
 
 with open(args.infile, 'r') as f:
-    original_data = json.load(f)
+    original_data = json.load(f, object_pairs_hook=OrderedDict)
 
 print "The input data is:"
 print original_data
