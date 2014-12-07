@@ -27,6 +27,8 @@ print args
 def translate_recursive(data_to_translate, translate_lang, input_lang, goslate_instance):
     translated_data = data_to_translate
     for i in data_to_translate:
+        if i == "_meta":
+            continue
         if isinstance(data_to_translate[i], dict):
             translated_data[i] = translate_recursive(
                 data_to_translate[i], translate_lang, input_lang, goslate_instance)

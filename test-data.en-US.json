@@ -3,9 +3,13 @@
     "creator": "techninja",
     "target": "en-US",
     "release": "0.7.5",
+    "information": "This should not be translated.",
     "attribution": "This is from https://github.com/evil-mad/robopaint/blob/master/resources/i18n/robopaint.en-US.json"
   },
   "common": {
+    "_meta":{
+      "no-translate": "This should not be translated."
+    },
     "pause": "Pause",
     "resume": "Resume",
     "stop": "Stop",
