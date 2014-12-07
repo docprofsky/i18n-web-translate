@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "creator": "techninja",
+    "target": "en-US",
+    "release": "0.7.5",
+    "attribution": "This is from https://github.com/evil-mad/robopaint/blob/master/resources/i18n/robopaint.en-US.json"
+  },
+  "common": {
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop",
+    "time": {
+      "ms": "ms",
+      "sec": "sec",
+      "seconds": "seconds"
+    },
+    "metric": {
+      "mm": "mm",
+      "cm": "cm"
+    },
+    "imperial": {
+      "in": "in"
+    }
+  },
+  "order-test": {
+    "first": "This should be first",
+    "second": "The second item in the list"
+  },
+  "second-order-test": {
+    "second-first": "The first element in the second list",
+    "second-second": "The second element in the second list"
+  }
+}
