@@ -2,6 +2,7 @@ import json
 import goslate
 import argparse
 from collections import OrderedDict
+import io
 
 original_data = {}
 gs = goslate.Goslate()
@@ -18,6 +19,10 @@ parser.add_argument("-i", "--indent", type=int, nargs='?', const=1,
                     help="Specify the indent level of the outputted JSON file "
                     "(default: 2). If not specified the output file "
                     "will not extra whitespace.")
+parser.add_argument("-a", "--ascii", action="store_true",
+                    help="Make the output file ascii only (default: False). "
+                    "When not specified the output file will be encoded"
+                    "with unicode (UTF-8).")
 
 args = parser.parse_args()
 
@@ -38,6 +43,17 @@ def translate_recursive(data_to_translate, translate_lang, input_lang, goslate_i
     return translated_data
 
 
+def byteify(input):
+    if isinstance(input, dict):
+        return {byteify(key): byteify(value) for key, value in input.iteritems()}
+    elif isinstance(input, list):
+        return [byteify(element) for element in input]
+    elif isinstance(input, unicode):
+        return input.encode('utf-8')
+    else:
+        return input
+
+
 with open(args.infile, 'r') as f:
     original_data = json.load(f, object_pairs_hook=OrderedDict)
 
@@ -49,6 +65,16 @@ translated_data = translate_recursive(
     original_data, args.targetlang, args.sourcelang, gs)
 print translated_data
 
+unicode_data = byteify(translated_data)
+
 if "outfile" in args:
-    with open(args.outfile, 'w') as f:
-        json.dump(translated_data, f, indent=args.indent)
+    with io.open(args.outfile, 'w') as f:
+        # json.dump(translated_data, f, indent=args.indent, ensure_ascii=False)
+        data = json.dumps(
+            unicode_data, indent=args.indent, ensure_ascii=args.ascii).decode('utf8')
+        f.write(data)
+        # try:
+        #     f.write(data)
+        # except TypeError:
+        # Decode data to Unicode first
+        #     f.write(data.decode('utf8'))
